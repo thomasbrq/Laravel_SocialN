@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::simplePaginate(4);
+        $posts = Post::orderBy('created_at', 'desc')->simplePaginate(4);
         return view('welcome', compact('posts'));
     }
 
@@ -42,14 +43,15 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'author' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         DB::table('post')->insert([
             'title' => $request->title,
             'slug' => Str::slug($request->title, '-'),
             'description' => $request->description,
-            'author' => $request->author
+            'author' => $request->author,
+            'created_at' => Carbon::now(),
         ]); 
 
         return redirect()->back()->with('message', 'Post créer avec succès');
