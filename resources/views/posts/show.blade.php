@@ -5,3 +5,4 @@
 <p>{{ $post->description }}</p>
 <span>{{ $post->author }}</span>
 <a href="{{ url('/') }}">Retour</a>
+<a href="{{ route('post.edit', $post->slug) }}">Editer</a>

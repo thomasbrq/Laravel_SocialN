@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
+Route::get('/{slug}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
 
 Route::resource('/', PostController::class)->names([
     'store' => 'post.store',

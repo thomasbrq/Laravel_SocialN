@@ -73,9 +73,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, $slug)
     {
-        //
+        $post = DB::table('post')->where('slug', '=', $slug)->first();
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -85,9 +86,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post, $id)
     {
-        //
+        DB::table('post')->where('id', '=', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'author' => $request->author,
+        ]);
+
+        return redirect()->back()->with('message', 'Post update avec succès');
     }
 
     /**
