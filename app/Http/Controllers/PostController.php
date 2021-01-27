@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $posts = Post::simplePaginate(5);
+        return view('welcome', compact('posts'));
     }
 
     /**
@@ -24,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,7 +39,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'description' => 'required'
+        ]);
+
+        DB::table('post')->insert([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
+            'description' => $request->description,
+            'author' => $request->author
+        ]); 
+
+        return redirect()->back()->with('message', 'Post créer avec succès');
     }
 
     /**
@@ -44,9 +61,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, $slug)
     {
-        //
+        $post = DB::table('post')->where('slug', '=', $slug)->first();
+        return view('posts.show', compact('post'));
     }
 
     /**

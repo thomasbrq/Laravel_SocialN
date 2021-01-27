@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,4 +129,17 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
+<h1>Welcome:</h1>
+
+{{ $posts->links() }}
+@foreach ($posts as $post)
+    <h3>{{ $post->title }}</h3>
+    <span>{{ $post->slug }}</span>
+    <p>{{ $post->description }}</p>
+    <b>{{ $post->author }}</b>
+    <form action="{{ route('post.show', $post->slug) }}" method="GET">
+        <button type="submit">Voir</button>
+    </form>
+@endforeach

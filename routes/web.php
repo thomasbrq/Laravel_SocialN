@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::resource('/', PostController::class);
+Route::resource('/', PostController::class)->names([
+    'store' => 'post.store',
+]);
 
 // Route::get('/', function () {
 //     return view('welcome');
