@@ -133,7 +133,7 @@
 
 
 <h1>Welcome:</h1>
-
+<a href="{{ url('/create') }}">Create</a>
 
 @if (session()->has('message'))
     {{ session()->get('message') }}

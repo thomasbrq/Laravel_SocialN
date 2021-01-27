@@ -63,7 +63,7 @@ class PostController extends Controller
      */
     public function show(Post $post, $slug)
     {
-        $post = DB::table('post')->where('slug', '=', $slug)->first();
+        $post = DB::table('post')->where('slug', $slug)->first();
         return view('posts.show', compact('post'));
     }
 
@@ -90,11 +90,12 @@ class PostController extends Controller
     {
         DB::table('post')->where('id', '=', $id)->update([
             'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'description' => $request->description,
             'author' => $request->author,
         ]);
 
-        return redirect()->back()->with('message', 'Post update avec succès');
+        return redirect('/')->with('message', 'Post update avec succès');
     }
 
     /**

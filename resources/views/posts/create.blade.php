@@ -10,7 +10,7 @@
     <textarea name="description" id="description" cols="30" rows="10"></textarea>
     <button type="submit">Envoyer</button>
 </form>
-
+<a href="{{ url('/') }}">Retour</a>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

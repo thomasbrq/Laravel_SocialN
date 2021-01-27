@@ -14,19 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [PostController::class, 'index'])->name('post.index');
+Route::get('/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/', [PostController::class, 'store'])->name('post.store');
 Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/{slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
+Route::post('/{id}/delete/', [PostController::class, 'destroy'])->name('post.destroy');
 
-Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
-
-Route::resource('/', PostController::class)->names([
-    'store' => 'post.store',
-]);
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
