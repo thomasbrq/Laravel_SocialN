@@ -131,7 +131,14 @@
     </body>
 </html> --}}
 
+
 <h1>Welcome:</h1>
+
+
+@if (session()->has('message'))
+    {{ session()->get('message') }}
+@endif
+
 
 {{ $posts->links() }}
 @foreach ($posts as $post)
@@ -142,4 +149,9 @@
     <form action="{{ route('post.show', $post->slug) }}" method="GET">
         <button type="submit">Voir</button>
     </form>
+    <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+        @csrf
+        <button type="submit">Delete</button>
+    </form>
 @endforeach
+

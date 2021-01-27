@@ -12,6 +12,8 @@
     <button type="submit">Envoyer</button>
 </form>
 
+<a href="{{ url('/') }}">Retour</a>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

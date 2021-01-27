@@ -18,6 +18,8 @@ Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/{slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
 
+Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+
 Route::resource('/', PostController::class)->names([
     'store' => 'post.store',
 ]);

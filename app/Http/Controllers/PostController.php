@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::simplePaginate(5);
+        $posts = Post::simplePaginate(4);
         return view('welcome', compact('posts'));
     }
 
@@ -103,8 +103,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, $id)
     {
-        //
+        DB::table('post')->where('id', '=', $id)->delete();
+
+        return redirect()->back()->with('message', 'Post supprimé !');
     }
 }
