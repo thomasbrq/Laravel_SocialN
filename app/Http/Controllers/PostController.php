@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->simplePaginate(4);
+        $posts = Post::orderBy('created_at', 'desc')->simplePaginate(10);
         return view('welcome', compact('posts'));
     }
 
@@ -41,7 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:100',
             'author' => 'required',
             'description' => 'required',
         ]);
