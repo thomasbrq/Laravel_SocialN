@@ -47,12 +47,3 @@
 @endsection
 
 {{ $posts->links() }}
-
-{{-- <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-    @csrf
-    <button type="submit">Delete</button>
-</form> --}}
-
-{{-- <form action="{{ route('post.show', $post->slug) }}" method="GET">
-    <input type="submit">
-</form> --}}
