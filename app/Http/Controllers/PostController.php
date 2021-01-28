@@ -46,15 +46,17 @@ class PostController extends Controller
             'description' => 'required',
         ]);
 
+        $slugex = Str::slug($request->title, '-');
+
         DB::table('post')->insert([
             'title' => $request->title,
-            'slug' => Str::slug($request->title, '-'),
+            'slug' => $slugex,
             'description' => $request->description,
             'author' => $request->author,
             'created_at' => Carbon::now(),
         ]); 
 
-        return redirect()->back()->with('message', 'Post créer avec succès');
+        return redirect('/'.$slugex)->with('message', 'Post créer avec succès');
     }
 
     /**
