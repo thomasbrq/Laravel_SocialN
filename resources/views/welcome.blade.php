@@ -41,6 +41,7 @@
             path: '.next-page',
             append: '#container',
             history: false,
+            scrollThreshold: 50,
         });
 
     </script>
