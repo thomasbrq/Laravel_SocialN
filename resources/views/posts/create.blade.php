@@ -33,7 +33,5 @@
             </div>
         @endif
     </div>
-
-
-
+    
 @endsection
