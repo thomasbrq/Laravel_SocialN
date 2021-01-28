@@ -6,3 +6,7 @@
 <span>{{ $post->author }}</span>
 <a href="{{ url('/') }}">Retour</a>
 <a href="{{ route('post.edit', $post->slug) }}">Editer</a>
+
+@foreach ($comments as $comment)
+    <p>{{ $comment->message }}=</p>
+@endforeach
