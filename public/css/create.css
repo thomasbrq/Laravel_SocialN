@@ -1,0 +1,76 @@
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#container h1 {
+    margin: 30px 0;
+}
+
+.message {
+    color: black;
+    width: 60%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.message form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.message form textarea {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    resize: none;
+    border-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+}
+
+.message form textarea:focus {
+    outline: none;
+}
+
+.message form input:focus {
+    outline: none;
+}
+
+.message form button {
+    margin: 10px 0 0 0;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(250, 250, 250);
+}
+
+.message form button:focus {
+    outline: none;
+}
+
+.message form button:hover {
+    background-color: rgb(245, 245, 245);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.287);
+}
+
+.message form label {
+    margin: 10px 0;
+}
+
+.message input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.alert-danger {
+    width: 60%;
+}
+.alert-danger ul {
+    list-style: none;
+}
