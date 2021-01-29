@@ -12,12 +12,6 @@
     <form action="/create" method="get" class="container-create-post">
         <input type="submit" value="Create post" class="create-post" />
     </form>
-
-    @if (session()->has('message'))
-        {{ session()->get('message') }}
-    @endif
-
-
     <div class="scrolling-pagination">
         <div id="container">
             @foreach ($posts as $post)
