@@ -26,14 +26,27 @@
             </div>
         @endif
         <h5>Comments: </h5>
-        <button class="add-comment">Add comment</button>
+        <div x-data ="{ open: false }" class="x-data">
+        <button class="add-comment" @click="open = ! open">Add comment</button>
+            <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
+                @csrf
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <button type="submit" class="btn btn-secondary">Send</button>
+            </form>
+        </div>
+
         <div class="comments">
             @foreach ($comments as $comment)
-            <p>{{ $comment->message }}=</p>
+            <p>{{ $comment->message }}</p>
             <span>By: {{ $comment->author }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
             <hr>
             @endforeach
         </div>
     </div>
+
+
 @endsection
