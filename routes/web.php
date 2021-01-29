@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Posts routes 
+
 Route::get('/', [PostController::class, 'index'])->name('post.index');
 Route::get('/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/', [PostController::class, 'store'])->name('post.store');
@@ -22,6 +25,12 @@ Route::get('/{slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
 Route::post('/{id}/delete/', [PostController::class, 'destroy'])->name('post.destroy');
 
+// Middleware
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// Comments routes
+
+Route::post('/{id}/comment', [CommentsController::class, 'store'])->name('comment.store');

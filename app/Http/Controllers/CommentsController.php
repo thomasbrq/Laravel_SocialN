@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommentsController extends Controller
 {
@@ -33,9 +35,21 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'message' => 'required',
+            'author' => 'required',
+        ]);
+
+        DB::table('comments')->insert([
+            'message' => $request->message,
+            'author' => $request->author,
+            'post_id' => $id,
+            'created_at' => Carbon::now(),
+        ]);
+
+        return redirect()->back()->with('message', 'Commentaire envoyé !');
     }
 
     /**
