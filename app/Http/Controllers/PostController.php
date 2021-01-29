@@ -56,7 +56,7 @@ class PostController extends Controller
             'created_at' => Carbon::now(),
         ]); 
 
-        return redirect('/'.$slugex)->with('message', 'Post créer avec succès');
+        return redirect('/'.$slugex)->with('message', 'Successfully created post!');
     }
 
     /**

@@ -49,7 +49,7 @@ class CommentsController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        return redirect()->back()->with('message', 'Commentaire envoyé !');
+        return redirect()->back()->with('message', 'Comment successfully sended !');
     }
 
     /**
