@@ -68,7 +68,7 @@ class PostController extends Controller
     public function show(Post $post, $slug, $id)
     {
         $post = DB::table('post')->where('slug', $slug)->where('id', '=', $id)->first();
-        $comments = Post::where('slug', '=', $slug)->first()->comments;
+        $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         return view('posts.show', compact('post', 'comments'));
     }
 
