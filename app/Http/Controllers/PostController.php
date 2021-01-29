@@ -56,7 +56,11 @@ class PostController extends Controller
             'created_at' => Carbon::now(),
         ]); 
 
-        return redirect('/'.$slugex)->with('message', 'Successfully created post!');
+        $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();
+
+        $idd = $idd->id;
+
+        return redirect('/'.$slugex.'/'.$idd)->with('message', 'Successfully created post!');
     }
 
     /**
