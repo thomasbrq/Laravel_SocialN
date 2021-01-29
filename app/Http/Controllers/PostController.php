@@ -65,9 +65,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, $slug)
+    public function show(Post $post, $slug, $id)
     {
-        $post = DB::table('post')->where('slug', $slug)->first();
+        $post = DB::table('post')->where('slug', $slug)->where('id', '=', $id)->first();
         $comments = Post::where('slug', '=', $slug)->first()->comments;
         return view('posts.show', compact('post', 'comments'));
     }

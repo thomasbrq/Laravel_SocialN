@@ -21,7 +21,7 @@
     <div class="scrolling-pagination">
         <div id="container">
             @foreach ($posts as $post)
-                <a href="{{ route('post.show', $post->slug) }}" class="a-div">
+                <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
                         Posted by : <b>{{ $post->author }}</b>
                         <h5>{{ $post->title }}</h5>
