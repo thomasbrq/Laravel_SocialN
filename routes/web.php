@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Comments routes
 
 Route::post('/{id}/comment', [CommentsController::class, 'store'])->name('comment.store');
+Route::get('/comment/{id}/delete', [CommentsController::class, 'destroy'])->name('comment.destroy');
