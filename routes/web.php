@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index'])->name('post.index');
 Route::get('/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/', [PostController::class, 'store'])->name('post.store');
-Route::get('/{slug}', [PostController::class, 'show'])->name('post.show');
+Route::get('/{slug}/{id}', [PostController::class, 'show'])->name('post.show');
 Route::get('/{slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
 Route::post('/{id}/delete/', [PostController::class, 'destroy'])->name('post.destroy');

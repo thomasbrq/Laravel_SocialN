@@ -56,7 +56,11 @@ class PostController extends Controller
             'created_at' => Carbon::now(),
         ]); 
 
-        return redirect('/'.$slugex)->with('message', 'Successfully created post!');
+        $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();
+
+        $idd = $idd->id;
+
+        return redirect('/'.$slugex.'/'.$idd)->with('message', 'Successfully created post!');
     }
 
     /**
@@ -65,10 +69,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, $slug)
+    public function show(Post $post, $slug, $id)
     {
-        $post = DB::table('post')->where('slug', $slug)->first();
-        $comments = Post::where('slug', '=', $slug)->first()->comments;
+        $post = DB::table('post')->where('slug', $slug)->where('id', '=', $id)->first();
+        $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         return view('posts.show', compact('post', 'comments'));
     }
 
