@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Post::class, 'author');
     }
+
+    public function comment_author()
+    {
+        return $this->belongsTo(Comment::class, 'author');
+    }
 }

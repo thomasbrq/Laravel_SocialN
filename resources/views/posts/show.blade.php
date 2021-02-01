@@ -53,8 +53,7 @@
             <button class="add-comment" @click="open = ! open">Add comment</button>
             <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
                 @csrf
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
                 <label for="message">Message</label>
                 <textarea name="message" id="message" cols="30" rows="10"></textarea>
                 <button type="submit" class="btn btn-secondary">Send</button>
@@ -65,7 +64,7 @@
             @foreach ($comments as $comment)
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
-                    <span>By: {{ $comment->author }}</span>
+                    <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
                     <span class="time-ago">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     <form action="{{ route('comment.destroy', $comment->id) }}">
                         <button type="submit">
@@ -84,4 +83,5 @@
         }, 7000);
 
     </script>
+    <script src="{{ asset('js/hide.js') }}"></script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -77,7 +78,8 @@ class PostController extends Controller
         $post = DB::table('post')->where('slug', $slug)->where('id', '=', $id)->first();
         $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         $author = User::with('post_author')->get();
-        return view('posts.show', compact('post', 'comments', 'author'));
+        $comment_author = User::with('comment_author')->get();
+        return view('posts.show', compact('post', 'comments', 'author', 'comment_author'));
     }
 
     /**
