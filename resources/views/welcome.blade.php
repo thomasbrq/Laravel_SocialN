@@ -26,8 +26,8 @@
                 <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
                         Posted by : <b>{{ $author[$post->author-1]['name'] }}</b>
-                        <h5>{{ $post->title }}</h5>
-                        <p>{{ $post->description }}</p>
+                        <h4>{{ $post->title }}</h4>
+                        <p class="desc-w">{{ $post->description }}</p>
                     </div>
                 </a>
             @endforeach

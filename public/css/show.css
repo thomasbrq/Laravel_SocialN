@@ -17,6 +17,7 @@
     border: 1px solid rgba(0, 0, 0, 0.103);
     margin: 10px 0;
     padding: 10px;
+    overflow-wrap: anywhere;
 }
 
 .comments {
@@ -98,6 +99,7 @@ hr {
 
 .one-comment {
     position: relative;
+    overflow-wrap: anywhere;
 }
 
 .one-comment button {
