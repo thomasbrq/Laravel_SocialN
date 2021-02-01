@@ -23,8 +23,8 @@ Route::get('/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/', [PostController::class, 'store'])->name('post.store');
 Route::get('/{slug}/{id}', [PostController::class, 'show'])->name('post.show');
 Route::get('/{slug}/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
-Route::post('/{id}', [PostController::class, 'update'])->name('post.update');
-Route::post('/{slug}/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
+Route::post('/p/{id}', [PostController::class, 'update'])->name('post.update');
+Route::post('/p/{slug}/{id}/delete', [PostController::class, 'destroy'])->name('post.destroy');
 
 // Middleware
 
@@ -34,5 +34,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Comments routes
 
-Route::post('/{id}/comment', [CommentsController::class, 'store'])->name('comment.store');
+Route::post('/c/{id}/comment', [CommentsController::class, 'store'])->name('comment.store');
 Route::get('/comment/{id}/delete', [CommentsController::class, 'destroy'])->name('comment.destroy');

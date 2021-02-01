@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Exists;
 
 class PostController extends Controller
 {
@@ -97,6 +98,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post, $id)
     {
+
         DB::table('post')->where('id', '=', $id)->update([
             'title' => $request->title,
             'slug' => Str::slug($request->title, '-'),
