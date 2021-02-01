@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->simplePaginate(10);
-        return view('welcome', compact('posts'));
+        $author = User::with('post_author')->get();
+        return view('welcome', compact('posts', 'author'));
     }
 
     /**
@@ -74,7 +76,8 @@ class PostController extends Controller
     {
         $post = DB::table('post')->where('slug', $slug)->where('id', '=', $id)->first();
         $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
-        return view('posts.show', compact('post', 'comments'));
+        $author = User::with('post_author')->get();
+        return view('posts.show', compact('post', 'comments', 'author'));
     }
 
     /**
@@ -86,7 +89,14 @@ class PostController extends Controller
     public function edit(Post $post, $slug)
     {
         $post = DB::table('post')->where('slug', '=', $slug)->first();
-        return view('posts.edit', compact('post'));
+        if(auth()->user() && auth()->user()->id == $post->author)
+        {
+            return view('posts.edit', compact('post'));
+        }
+        else
+        {
+            return redirect('/')->with('error', 'Action unauthorized!');
+        }
     }
 
     /**

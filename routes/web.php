@@ -29,7 +29,7 @@ Route::post('/p/{slug}/{id}/delete', [PostController::class, 'destroy'])->name('
 // Middleware
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/');
 })->name('dashboard');
 
 // Comments routes

@@ -9,15 +9,23 @@
 
 @section('content')
 
-    <form action="/create" method="get" class="container-create-post">
-        <input type="submit" value="Create post" class="create-post" />
-    </form>
+    @guest
+        <form action="" class="container-create-post">
+            <input type="button" value="Please log in to create a post" class="create-post" />
+        </form>
+    @endguest
+    
+    @auth
+        <form action="/create" method="get" class="container-create-post">
+            <input type="submit" value="Create post" class="create-post" />
+        </form>
+    @endauth
     <div class="scrolling-pagination">
         <div id="container">
             @foreach ($posts as $post)
                 <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
-                        Posted by : <b>{{ $post->author }}</b>
+                        Posted by : <b>{{ $author[$post->author-1]['name'] }}</b>
                         <h5>{{ $post->title }}</h5>
                         <p>{{ $post->description }}</p>
                     </div>
