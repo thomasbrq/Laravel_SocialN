@@ -113,9 +113,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post, $id)
+    public function destroy(Post $post, $slug, $id)
     {
-        DB::table('post')->where('id', '=', $id)->delete();
-        return redirect()->back()->with('message', 'Post supprimé !');
+        DB::table('post')->where('id', $id)->where('slug', $slug)->delete();
+        return redirect('/')->with('message', 'Post supprimé !');
     }
 }
