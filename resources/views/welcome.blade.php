@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <form action="/create" method="get" class="container-create-post">
+<form action="/create" method="get" class="container-create-post">
         <input type="submit" value="Create post" class="create-post" />
     </form>
     <div class="scrolling-pagination">

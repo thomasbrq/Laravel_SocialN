@@ -89,7 +89,14 @@ class PostController extends Controller
     public function edit(Post $post, $slug)
     {
         $post = DB::table('post')->where('slug', '=', $slug)->first();
-        return view('posts.edit', compact('post'));
+        if(auth()->user() && auth()->user()->id == $post->author)
+        {
+            return view('posts.edit', compact('post'));
+        }
+        else
+        {
+            return redirect('/')->with('error', 'Action unauthorized!');
+        }
     }
 
     /**
