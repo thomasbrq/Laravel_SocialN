@@ -17,7 +17,7 @@ class CreateTableComments extends Migration
             $table->id();
             $table->longText('message');
             $table->string('author')->nullable();
-            $table->foreignId('post_id')->references('id')->on('post');
+            $table->foreignId('post_id')->references('id')->on('post')->onDelete('cascade');
             $table->timestamps();
         });
     }
