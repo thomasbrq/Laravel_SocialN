@@ -1,0 +1,24 @@
+.user-connected {
+    color: white;
+    position: absolute;
+    right: 20px;
+}
+
+.user-connected ul {
+    list-style: none;
+}
+
+.user-connected li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.form-logout a{
+    color: black;
+}
+
+@media screen and (max-width: 991px) {
+    .user-connected {
+        position: initial;
+    }
+}
