@@ -116,7 +116,6 @@ class PostController extends Controller
     public function destroy(Post $post, $id)
     {
         DB::table('post')->where('id', '=', $id)->delete();
-
         return redirect()->back()->with('message', 'Post supprimé !');
     }
 }

@@ -96,3 +96,18 @@ hr {
     width: 60%;
 }
 
+.one-comment {
+    position: relative;
+}
+
+.one-comment button {
+    background-color: transparent;
+    border: none;
+}
+.one-comment button:focus {
+    outline: none;
+}
+
+.svg-close {
+    width: 25px;
+}
