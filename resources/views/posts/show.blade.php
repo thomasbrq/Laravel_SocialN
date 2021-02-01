@@ -49,16 +49,26 @@
             
         </div>
         <h5>Comments: </h5>
-        <div x-data="{ open: false }" class="x-data" x-cloak>
-            <button class="add-comment" @click="open = ! open">Add comment</button>
-            <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
-                @csrf
-                <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                <button type="submit" class="btn btn-secondary">Send</button>
-            </form>
+        @auth
+            <div x-data="{ open: false }" class="x-data" x-cloak>
+                <button class="add-comment" @click="open = ! open">Add comment</button>
+                <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
+                    @csrf
+                    <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <button type="submit" class="btn btn-secondary">Send</button>
+                </form>
+            </div>
+        @endauth
+
+        @guest
+        <div class="x-data">
+            <a href="/login">
+                <button class="add-comment">Please log in to create a comment</button>
+            </a>
         </div>
+        @endguest
 
         <div class="comments">
             @foreach ($comments as $comment)
