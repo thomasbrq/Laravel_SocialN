@@ -104,6 +104,7 @@ hr {
     background-color: transparent;
     border: none;
 }
+
 .one-comment button:focus {
     outline: none;
 }
@@ -114,4 +115,8 @@ hr {
 
 .edit-svg {
     width: 20px;
+}
+
+[x-cloak] {
+    display: none;
 }

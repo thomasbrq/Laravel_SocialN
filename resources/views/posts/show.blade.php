@@ -44,7 +44,7 @@
             </form>
         </div>
         <h5>Comments: </h5>
-        <div x-data="{ open: false }" class="x-data">
+        <div x-data="{ open: false }" class="x-data" x-cloak>
             <button class="add-comment" @click="open = ! open">Add comment</button>
             <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
                 @csrf
