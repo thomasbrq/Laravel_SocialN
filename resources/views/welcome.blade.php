@@ -17,7 +17,7 @@
             @foreach ($posts as $post)
                 <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
-                        Posted by : <b>{{ $post->author }}</b>
+                        Posted by : <b>{{ $author[$post->author-1]['name'] }}</b>
                         <h5>{{ $post->title }}</h5>
                         <p>{{ $post->description }}</p>
                     </div>
