@@ -9,9 +9,17 @@
 
 @section('content')
 
-<form action="/create" method="get" class="container-create-post">
-        <input type="submit" value="Create post" class="create-post" />
-    </form>
+    @guest
+        <form action="" class="container-create-post">
+            <input type="button" value="Please log in to create a post" class="create-post" />
+        </form>
+    @endguest
+    
+    @auth
+        <form action="/create" method="get" class="container-create-post">
+            <input type="submit" value="Create post" class="create-post" />
+        </form>
+    @endauth
     <div class="scrolling-pagination">
         <div id="container">
             @foreach ($posts as $post)
