@@ -37,7 +37,6 @@
             history: false,
             scrollThreshold: 50,
         });
-
     </script>
 @endsection
 
