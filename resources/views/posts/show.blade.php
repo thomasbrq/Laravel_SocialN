@@ -29,7 +29,7 @@
         <div class="message">
             <h3>{{ $post->title }}</h3>
             <p>{{ $post->description }}</p>
-            <span>By: {{ $post->author }}</span>
+            <span>By: {{ $author[$post->author-1]['name'] }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
             <form action="{{ route('post.edit', [$post->slug, $post->id]) }}">
                 <button type="submit">
