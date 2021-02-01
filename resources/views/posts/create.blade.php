@@ -14,8 +14,7 @@
         <div class="message">
             <form action="{{ route('post.store') }}" method="POST">
                 @csrf
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title">
                 <label for="description">Description</label>
@@ -33,5 +32,5 @@
             </div>
         @endif
     </div>
-    
+    <script src="{{ asset('js/hide.js') }}"></script>
 @endsection

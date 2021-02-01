@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function post_author()
+    {
+        return $this->belongsTo(Post::class, 'author');
+    }
 }
