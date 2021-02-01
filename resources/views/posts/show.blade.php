@@ -49,29 +49,40 @@
             
         </div>
         <h5>Comments: </h5>
-        <div x-data="{ open: false }" class="x-data" x-cloak>
-            <button class="add-comment" @click="open = ! open">Add comment</button>
-            <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
-                @csrf
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" cols="30" rows="10"></textarea>
-                <button type="submit" class="btn btn-secondary">Send</button>
-            </form>
+        @auth
+            <div x-data="{ open: false }" class="x-data" x-cloak>
+                <button class="add-comment" @click="open = ! open">Add comment</button>
+                <form action="{{ route('comment.store', $post->id) }}" method="post" x-show="open" class="form-comment">
+                    @csrf
+                    <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <button type="submit" class="btn btn-secondary">Send</button>
+                </form>
+            </div>
+        @endauth
+
+        @guest
+        <div class="x-data">
+            <a href="/login">
+                <button class="add-comment">Please log in to create a comment</button>
+            </a>
         </div>
+        @endguest
 
         <div class="comments">
             @foreach ($comments as $comment)
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
-                    <span>By: {{ $comment->author }}</span>
+                    <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
                     <span class="time-ago">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                    @if (auth()->user() && auth()->user()->id == $comment->author)
                     <form action="{{ route('comment.destroy', $comment->id) }}">
                         <button type="submit">
                             <svg class="w-6 h-6 svg-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </button>
                     </form>
+                    @endif
                     <hr>
             </div>
             @endforeach
@@ -84,4 +95,5 @@
         }, 7000);
 
     </script>
+    <script src="{{ asset('js/hide.js') }}"></script>
 @endsection

@@ -10,8 +10,8 @@
 @section('content')
 
     @guest
-        <form action="" class="container-create-post">
-            <input type="button" value="Please log in to create a post" class="create-post" />
+        <form action="/login" class="container-create-post">
+            <input type="submit" value="Please log in to create a post" class="create-post" />
         </form>
     @endguest
     
