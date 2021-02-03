@@ -39,14 +39,33 @@
                     </button>
                 </form>
 
-                <form action="{{ route('post.destroy', [$post->slug, $post->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit">
-                        <svg class="w-6 h-6 svg-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
-                </form>
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    <svg class="w-6 h-6 svg-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  </button>
+                  
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Do you really want to delete your post?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ...
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <form action="{{ route('post.destroy', [$post->slug, $post->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             @endif
-            
         </div>
         <h5>Comments: </h5>
         @auth
