@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 
-@section('title', 'Home')
+@section('title', 'Post')
 
 @section('sidebar')
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
