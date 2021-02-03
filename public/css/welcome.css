@@ -25,6 +25,7 @@
 
 .post-container {
     overflow-wrap: anywhere;
+    position: relative;
 }
 
 .container-create-post {
@@ -53,4 +54,11 @@
 
 .pagination-contain {
     display: none;
+}
+
+.time-ago {
+    float: right;
+    position: absolute;
+    right: 30px;
+    bottom: 0;
 }

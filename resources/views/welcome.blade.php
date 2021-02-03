@@ -28,6 +28,7 @@
                         Posted by : <b>{{ $author[$post->author-1]['name'] }}</b>
                         <h4>{{ $post->title }}</h4>
                         <p class="desc-w">{{ $post->description }}</p>
+                        <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
                     </div>
                 </a>
             @endforeach
