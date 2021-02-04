@@ -36,6 +36,7 @@ hr {
 
 .time-ago {
     float: right;
+    padding: 17px 0;
 }
 
 .add-comment {

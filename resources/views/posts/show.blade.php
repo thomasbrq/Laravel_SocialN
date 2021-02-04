@@ -5,6 +5,7 @@
 @section('sidebar')
     @parent
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
 @endsection
 
 @section('content')
@@ -29,6 +30,7 @@
         <div class="message">
             <h3>{{ $post->title }}</h3>
             <p>{{ $post->description }}</p>
+            <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
             <span>By: {{ $author[$post->author-1]['name'] }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
 
