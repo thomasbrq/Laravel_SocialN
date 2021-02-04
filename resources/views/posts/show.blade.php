@@ -104,8 +104,8 @@
         </div>
         @endguest
 
-        <div class="comments">
             @foreach ($comments as $comment)
+            <div class="comments">
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
                     <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $comment_author[$comment->author-1]['profile_photo_url'] }}" alt="" />
@@ -119,9 +119,10 @@
                     </form>
                     @endif
                     <hr>
+                </div>
             </div>
             @endforeach
-        </div>
+
     </div>
 
     <script>
