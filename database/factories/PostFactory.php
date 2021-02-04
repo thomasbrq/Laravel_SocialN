@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -22,10 +23,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
-            'slug' => $this->faker->slug(6),
-            'description' => $this->faker->text(200),
-            'author' => $this->faker->firstName(),
+            'title' => $this->faker->text(100),
+            'slug' => $this->faker->slug(),
+            'description' => $this->faker->realText(350),
+            'author' => $this->faker->numberBetween(1,30),
         ];
     }
 }

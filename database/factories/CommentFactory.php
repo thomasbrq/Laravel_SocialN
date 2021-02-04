@@ -23,7 +23,7 @@ class CommentFactory extends Factory
     {
         return [
             'message' => $this->faker->realText(350),
-            'author' => $this->faker->firstName(),
+            'author' => $this->faker->numberBetween(1,30),
             'post_id' => $this->faker->numberBetween(1, 50),
         ];
     }
