@@ -40,7 +40,7 @@ hr {
 }
 
 .time-ago-comment {
-    float: right;
+    display: block;
     padding: 0 10px;
 }
 
