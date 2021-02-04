@@ -25,6 +25,7 @@
 
 .post-container {
     overflow-wrap: anywhere;
+    position: relative;
 }
 
 .container-create-post {
@@ -53,4 +54,27 @@
 
 .pagination-contain {
     display: none;
+}
+
+.time-ago {
+    float: right;
+    margin: 5px 15px;
+}
+
+.alert-msg {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+
+
+.t-de { /* Titre et message */
+    margin-left: 10px;
+    margin-top: 5px;
 }

@@ -1,10 +1,11 @@
 @extends('layouts.navbar')
 
-@section('title', 'Home')
+@section('title', 'Post')
 
 @section('sidebar')
-    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     @parent
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
 @endsection
 
 @section('content')
@@ -27,26 +28,48 @@
 
     <div id="container">
         <div class="message">
-            <h3>{{ $post->title }}</h3>
-            <p>{{ $post->description }}</p>
+            <div class="t-de">
+                <h3>{{ $post->title }}</h3>
+                <p>{{ $post->description }}</p>
+            </div>
+            <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
             <span>By: {{ $author[$post->author-1]['name'] }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
 
             @if (auth()->user() && auth()->user()->id == $post->author)
                 <form action="{{ route('post.edit', [$post->slug, $post->id]) }}">
-                    <button type="submit">
+                    <button type="submit" class="btn edelete">
                         <svg class="w-6 h-6 edit-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                     </button>
                 </form>
 
-                <form action="{{ route('post.destroy', [$post->slug, $post->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit">
-                        <svg class="w-6 h-6 svg-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
-                </form>
+                <button type="button" class="btn edelete" data-toggle="modal" data-target="#exampleModalCenter">
+                    <svg class="w-6 h-6 svg-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </button>
+                  
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Do you really want to delete your post?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ...
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <form action="{{ route('post.destroy', [$post->slug, $post->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             @endif
-            
         </div>
         <h5>Comments: </h5>
         @auth
@@ -74,8 +97,9 @@
             @foreach ($comments as $comment)
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
+                    <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $comment_author[$comment->author-1]['profile_photo_url'] }}" alt="" />
                     <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
-                    <span class="time-ago">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                    <span class="time-ago-comment">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     @if (auth()->user() && auth()->user()->id == $comment->author)
                     <form action="{{ route('comment.destroy', $comment->id) }}">
                         <button type="submit">

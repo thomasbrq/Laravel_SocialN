@@ -17,6 +17,7 @@
     border: 1px solid rgba(0, 0, 0, 0.103);
     margin: 10px 0;
     padding: 10px;
+    overflow-wrap: anywhere;
 }
 
 .comments {
@@ -35,6 +36,12 @@ hr {
 
 .time-ago {
     float: right;
+    padding: 17px 10px;
+}
+
+.time-ago-comment {
+    display: block;
+    padding: 0 10px;
 }
 
 .add-comment {
@@ -80,10 +87,6 @@ hr {
     margin-top: 10px;
 }
 
-.btn {
-    margin-top: 15px;
-}
-
 .alert-msg {
     display: flex;
     justify-content: center;
@@ -98,6 +101,7 @@ hr {
 
 .one-comment {
     position: relative;
+    overflow-wrap: anywhere;
 }
 
 .one-comment button {
@@ -119,4 +123,21 @@ hr {
 
 [x-cloak] {
     display: none;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.edelete {
+    float: right;
+    padding: 5;
+}
+
+.one-comment p {
+    padding: 5px 0 0 10px;
+}
+
+.t-de {
+    padding-left: 10px;
 }
