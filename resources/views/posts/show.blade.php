@@ -28,8 +28,10 @@
 
     <div id="container">
         <div class="message">
-            <h3>{{ $post->title }}</h3>
-            <p>{{ $post->description }}</p>
+            <div class="t-de">
+                <h3>{{ $post->title }}</h3>
+                <p>{{ $post->description }}</p>
+            </div>
             <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
             <span>By: {{ $author[$post->author-1]['name'] }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
@@ -95,6 +97,7 @@
             @foreach ($comments as $comment)
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
+                    <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $comment_author[$comment->author-1]['profile_photo_url'] }}" alt="" />
                     <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
                     <span class="time-ago-comment">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     @if (auth()->user() && auth()->user()->id == $comment->author)

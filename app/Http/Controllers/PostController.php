@@ -23,7 +23,6 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->simplePaginate(10);
         $author = User::with('post_author')->get();
-        // dd($author);
         return view('welcome', compact('posts', 'author'));
     }
 
@@ -80,6 +79,7 @@ class PostController extends Controller
         $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         $author = User::with('post_author')->get();
         $comment_author = User::with('comment_author')->get();
+        // dd($comment_author);
         return view('posts.show', compact('post', 'comments', 'author', 'comment_author'));
     }
 

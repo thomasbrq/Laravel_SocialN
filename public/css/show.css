@@ -133,3 +133,11 @@ hr {
     float: right;
     padding: 5;
 }
+
+.one-comment p {
+    padding: 5px 0 0 10px;
+}
+
+.t-de {
+    padding-left: 10px;
+}
