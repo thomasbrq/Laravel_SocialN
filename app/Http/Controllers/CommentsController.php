@@ -38,7 +38,7 @@ class CommentsController extends Controller
     public function store(Request $request, $id)
     {
         $validated = $request->validate([
-            'message' => 'required',
+            'message' => 'required|max:500',
             'author' => 'required',
         ]);
 

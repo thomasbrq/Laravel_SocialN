@@ -6,6 +6,11 @@
     @parent
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loading-bar.min.css') }}">
+
+
+
+
 @endsection
 
 @section('content')
@@ -79,7 +84,13 @@
                     @csrf
                     <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
                     <label for="message">Message</label>
-                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" maxlength="500"></textarea>
+                    
+                    <div class="loading-bar">
+                        <div class="ldBar" data-value="0" id="myItem1" data-max='500' data-preset="circle" style="width: 25px;height: 25px">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-secondary">Send</button>
                 </form>
             </div>
@@ -120,4 +131,29 @@
 
     </script>
     <script src="{{ asset('js/hide.js') }}"></script>
+    <script src="{{ asset('js/loading-bar.min.js') }}"></script>
+    <script>
+
+    let txtarea = $('textarea');
+    ta_value = 0;
+    
+
+    txtarea.on('input', function() {
+        if(txtarea.val().length > 480) {
+            $('path.mainline').css('stroke', '#FF0000')
+            $('.ldBar-label').css('color', '#FF0000')
+        } else {
+            $('path.mainline').css('stroke', '#2277ff')
+            $('.ldBar-label').css('color', '#2277ff')
+        }
+
+        ta_value = txtarea.val().length;
+        bar1.set(ta_value);
+    });
+
+    /* construct manually */
+    var bar1 = new ldBar("#myItem1");
+    /* ldBar stored in the element */
+    var bar2 = document.getElementById('myItem1').ldBar;
+    </script>
 @endsection
