@@ -58,9 +58,7 @@
 
 .time-ago {
     float: right;
-    position: absolute;
-    right: 30px;
-    bottom: 0;
+    margin: 5px 15px;
 }
 
 .alert-msg {
@@ -73,4 +71,9 @@
     display: flex;
     justify-content: center;
     width: 60%;
+}
+
+
+.t-de { /* Titre et message */
+    margin-left: 10px;
 }

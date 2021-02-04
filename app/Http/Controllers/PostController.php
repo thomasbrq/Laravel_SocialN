@@ -23,6 +23,7 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->simplePaginate(10);
         $author = User::with('post_author')->get();
+        // dd($author);
         return view('welcome', compact('posts', 'author'));
     }
 

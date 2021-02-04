@@ -4,6 +4,7 @@
 
 @section('sidebar')
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
     @parent
 @endsection
 
@@ -40,9 +41,12 @@
             @foreach ($posts as $post)
                 <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
+                        <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
                         Posted by : <b>{{ $author[$post->author-1]['name'] }}</b>
-                        <h4>{{ $post->title }}</h4>
-                        <p class="desc-w">{{ $post->description }}</p>
+                        <div class="t-de">
+                            <h4>{{ $post->title }}</h4>
+                            <p class="desc-w">{{ $post->description }}</p>
+                        </div>
                         <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
                     </div>
                 </a>
