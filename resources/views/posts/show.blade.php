@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/loading-bar.min.css') }}">
-
-
-
-
 @endsection
 
 @section('content')
