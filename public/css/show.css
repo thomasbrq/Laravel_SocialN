@@ -36,7 +36,12 @@ hr {
 
 .time-ago {
     float: right;
-    padding: 17px 0;
+    padding: 17px 10px;
+}
+
+.time-ago-comment {
+    float: right;
+    padding: 0 10px;
 }
 
 .add-comment {

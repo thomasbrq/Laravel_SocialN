@@ -96,7 +96,7 @@
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
                     <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
-                    <span class="time-ago">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                    <span class="time-ago-comment">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     @if (auth()->user() && auth()->user()->id == $comment->author)
                     <form action="{{ route('comment.destroy', $comment->id) }}">
                         <button type="submit">
