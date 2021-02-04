@@ -118,7 +118,6 @@
                         </button>
                     </form>
                     @endif
-                    <hr>
                 </div>
             </div>
             @endforeach
