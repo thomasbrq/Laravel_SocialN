@@ -6,6 +6,11 @@
     @parent
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loading-bar.min.css') }}">
+
+
+
+
 @endsection
 
 @section('content')
@@ -33,7 +38,7 @@
                 <p>{{ $post->description }}</p>
             </div>
             <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
-            <span>By: {{ $author[$post->author-1]['name'] }}</span>
+            @<span>{{ $author[$post->author-1]['name'] }}</span>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
 
             @if (auth()->user() && auth()->user()->id == $post->author)
@@ -79,7 +84,13 @@
                     @csrf
                     <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
                     <label for="message">Message</label>
-                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" maxlength="500"></textarea>
+                    
+                    <div class="loading-bar">
+                        <div class="ldBar" data-value="0" id="myItem1" data-max='500' data-preset="circle" style="width: 25px;height: 25px">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-secondary">Send</button>
                 </form>
             </div>
@@ -93,12 +104,12 @@
         </div>
         @endguest
 
-        <div class="comments">
             @foreach ($comments as $comment)
+            <div class="comments">
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
                     <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $comment_author[$comment->author-1]['profile_photo_url'] }}" alt="" />
-                    <span>By: {{ $comment_author[$comment->author-1]['name'] }}</span>
+                    @<span>{{ $comment_author[$comment->author-1]['name'] }}</span>
                     <span class="time-ago-comment">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     @if (auth()->user() && auth()->user()->id == $comment->author)
                     <form action="{{ route('comment.destroy', $comment->id) }}">
@@ -107,10 +118,10 @@
                         </button>
                     </form>
                     @endif
-                    <hr>
+                </div>
             </div>
             @endforeach
-        </div>
+
     </div>
 
     <script>
@@ -120,4 +131,29 @@
 
     </script>
     <script src="{{ asset('js/hide.js') }}"></script>
+    <script src="{{ asset('js/loading-bar.min.js') }}"></script>
+    <script>
+
+    let txtarea = $('textarea');
+    ta_value = 0;
+    
+
+    txtarea.on('input', function() {
+        if(txtarea.val().length > 480) {
+            $('path.mainline').css('stroke', '#FF0000')
+            $('.ldBar-label').css('color', '#FF0000')
+        } else {
+            $('path.mainline').css('stroke', '#2277ff')
+            $('.ldBar-label').css('color', '#2277ff')
+        }
+
+        ta_value = txtarea.val().length;
+        bar1.set(ta_value);
+    });
+
+    /* construct manually */
+    var bar1 = new ldBar("#myItem1");
+    /* ldBar stored in the element */
+    var bar2 = document.getElementById('myItem1').ldBar;
+    </script>
 @endsection
