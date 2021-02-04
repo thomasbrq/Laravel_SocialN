@@ -170,3 +170,21 @@ hr {
     flex-direction: row-reverse;
     margin: 15px 0;
 }
+
+@media screen and (max-width: 500px) {
+    .message {
+        width: 100%;
+    }
+    .comments {
+        width: 100%;
+    }
+    .add-comment {
+        width: 100%;
+    }
+    .x-data {
+        width: 100%;
+    }
+    .alert {
+        width: 100%;
+    }
+}
