@@ -8,7 +8,22 @@
 @endsection
 
 @section('content')
-
+<div class="alert-msg c-alert">
+    @if (session()->has('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
     @guest
         <form action="/login" class="container-create-post">
             <input type="submit" value="Please log in to create a post" class="create-post" />
@@ -47,6 +62,13 @@
             scrollThreshold: 50,
         });
     </script>
+    <script>
+        setTimeout(function() {
+            $('.alert-msg').remove();
+        }, 7000);
+
+    </script>
+    <script src="{{ asset('js/hide.js') }}"></script>
 @endsection
 
 {{ $posts->links() }}

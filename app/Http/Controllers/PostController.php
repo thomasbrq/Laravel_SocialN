@@ -118,7 +118,7 @@ class PostController extends Controller
             'author' => $request->author,
         ]);
 
-        return redirect('/')->with('message', 'Post update avec succès');
+        return redirect('/')->with('message', 'Post successfully update!');
     }
 
     /**
@@ -130,6 +130,6 @@ class PostController extends Controller
     public function destroy(Post $post, $slug, $id)
     {
         DB::table('post')->where('id', $id)->where('slug', $slug)->delete();
-        return redirect('/')->with('message', 'Post supprimé !');
+        return redirect('/')->with('message', 'Post successfully deleted!');
     }
 }
