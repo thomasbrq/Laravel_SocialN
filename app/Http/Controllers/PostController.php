@@ -47,7 +47,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:100',
             'author' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:500',
         ]);
 
         $slugex = Str::slug($request->title, '-');
@@ -79,7 +79,6 @@ class PostController extends Controller
         $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         $author = User::with('post_author')->get();
         $comment_author = User::with('comment_author')->get();
-        // dd($comment_author);
         return view('posts.show', compact('post', 'comments', 'author', 'comment_author'));
     }
 
@@ -111,6 +110,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post, $id)
     {
+
+        $validated = $request->validate([
+            'title' => 'required|max:100',
+            'author' => 'required',
+            'description' => 'required|max:500',
+        ]);
 
         DB::table('post')->where('id', '=', $id)->update([
             'title' => $request->title,
