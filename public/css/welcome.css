@@ -79,6 +79,15 @@
     margin-top: 5px;
 }
 
+.comment-post {
+    font-size: 18px;
+}
+
+.comment-post svg {
+    width: 23px;
+    vertical-align: sub;
+}
+
 @media screen and (max-width: 500px) {
     .create-post {
         width: 100%;
