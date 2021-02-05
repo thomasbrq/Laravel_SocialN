@@ -72,7 +72,7 @@
                   </div>
             @endif
         </div>
-        <h5>Comments: </h5>
+        <h5>Comments ({{ $count_comments }}) :</h5>
         @auth
             <div x-data="{ open: false }" class="x-data" x-cloak>
                 <button class="add-comment" @click="open = ! open">Add comment</button>
