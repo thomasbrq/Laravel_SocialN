@@ -79,7 +79,11 @@ class PostController extends Controller
         $comments = Post::where('slug', $slug)->where('id', $id)->first()->comments;
         $author = User::with('post_author')->get();
         $comment_author = User::with('comment_author')->get();
-        return view('posts.show', compact('post', 'comments', 'author', 'comment_author'));
+
+        $count_comments = Post::find($id);
+        $count_comments = $count_comments->comments->count();
+
+        return view('posts.show', compact('post', 'comments', 'author', 'comment_author', 'count_comments'));
     }
 
     /**
