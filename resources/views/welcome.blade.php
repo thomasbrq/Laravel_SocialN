@@ -42,7 +42,7 @@
                 <a href="{{ route('post.show', [$post->slug, $post->id]) }}" class="a-div">
                     <div class="post-container">
                         <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
-                        <span>{{ $author[$post->author-1]['name'] }}</span>
+                        @<span>{{ $author[$post->author-1]['name'] }}</span>
                         <div class="t-de">
                             <h4>{{ $post->title }}</h4>
                             <p class="desc-w">{{ $post->description }}</p>
