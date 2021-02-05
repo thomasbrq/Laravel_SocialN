@@ -147,9 +147,7 @@
         bar1.set(ta_value);
     });
 
-    /* construct manually */
     var bar1 = new ldBar("#myItem1");
-    /* ldBar stored in the element */
-    var bar2 = document.getElementById('myItem1').ldBar;
+
     </script>
 @endsection
