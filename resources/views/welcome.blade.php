@@ -5,10 +5,13 @@
 @section('sidebar')
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user-photo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ue-scroll.min.css') }}">
     @parent
 @endsection
 
 @section('content')
+<div id="ue-scroll" class="ue-scroll btn-white arrow-black circle shadow"></div>
+
 <div class="alert-msg c-alert">
     @if (session()->has('message'))
         <div class="alert alert-success" role="alert">
@@ -77,6 +80,10 @@
 
     </script>
     <script src="{{ asset('js/hide.js') }}"></script>
+    <script src="{{ asset('js/ue-scroll.min.js') }}"></script>
+    <script>
+      UeScroll.init();
+    </script>
 @endsection
 
 {{ $posts->links() }}
