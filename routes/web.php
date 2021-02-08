@@ -38,6 +38,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::post('/c/{id}/comment', [CommentsController::class, 'store'])->name('comment.store');
 Route::get('/comment/{id}/delete', [CommentsController::class, 'destroy'])->name('comment.destroy');
 
-// Test routes profile
+// Profile routes
 
 Route::get('/user/profile/{name}', [ProfileController::class, 'index'])->name('profile.index');
+
+// Logout route
+
+Route::post('/user/logout', [ProfileController::class, 'logout'])->name('profile.logout');

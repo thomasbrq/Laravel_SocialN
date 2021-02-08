@@ -18,8 +18,12 @@
                     <img src="{{ $user['profile_photo_url'] }}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>{{ '@'.$user->name }}</h4>
-                      <p class="text-muted font-size-sm">Register: {{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</p>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <p class="text-muted font-size-sm">Registered: {{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</p>
+                      @if (auth()->user() && auth()->user()->name ==  $user->name)
+                        <a href="/user/profile"><button class="btn btn-primary">Manage profile</button></a>
+                      @else
+                        <button class="btn btn-outline-primary">Message</button>
+                      @endif
                     </div>
                   </div>
                 </div>
@@ -32,7 +36,7 @@
                       @if (is_null($user->website))
                           none
                       @else
-                          {{ $user->website }}
+                         <a href="{{ $user->website }}">{{ $user->website }}</a>
                       @endif  
                     </span>
                   </li>
@@ -42,7 +46,7 @@
                       @if (is_null($user->github))
                       none
                       @else
-                          {{ $user->github }}
+                         <a href="https://github.com/{{ $user->github }}">{{ '@'.$user->github }}</a>
                       @endif  
                     </span>
                   </li>
@@ -52,7 +56,7 @@
                       @if (is_null($user->twitter))
                       none
                       @else
-                          {{ $user->twitter }}
+                         <a href="https://twitter.com/{{ $user->twitter }}">{{ '@'.$user->twitter }}</a>
                       @endif  
                     </span>
                   </li>
@@ -62,7 +66,7 @@
                       @if (is_null($user->instagram))
                       none
                       @else
-                          {{ $user->instagram }}
+                        <a href="https://instagram.com/{{ $user->instagram }}">{{ '@'.$user->instagram }}</a>
                       @endif  
                     </span>
                   </li>
@@ -72,7 +76,7 @@
                       @if (is_null($user->facebook))
                       none
                       @else
-                          {{ $user->facebook }}
+                        <a href="https://facebook.com/{{ $user->facebook }}">{{ '@'.$user->facebook }}</a>
                       @endif  
                     </span>
                   </li>
@@ -82,7 +86,7 @@
             <div class="col-md-8">
             <div class="card-mb-3">
                 <div class="card-body">
-                    <h3>Last messages:</h3>
+                    <h3>Last posts:</h3>
                 </div>
             </div>
               <div class="card mb-3">

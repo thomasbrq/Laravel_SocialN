@@ -65,6 +65,43 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+        <!-- Website -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="website" value="{{ __('Website') }}" />
+            <x-jet-input id="website" placeholder="http://example.com" type="url" class="mt-1 block w-full" wire:model.defer="state.website" />
+            <x-jet-input-error for="website" class="mt-2" />
+        </div>
+
+        <!-- Github -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="github" value="{{ __('Github') }}" />
+            <x-jet-input id="github" type="text" placeholder="username" class="mt-1 block w-full" wire:model.defer="state.github" />
+            <x-jet-input-error for="github" class="mt-2" />
+        </div>
+        
+        <!-- Twitter -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="twitter" value="{{ __('Twitter') }}" />
+            <x-jet-input id="twitter" type="text" placeholder="username" class="mt-1 block w-full" wire:model.defer="state.twitter" />
+            <x-jet-input-error for="twitter" class="mt-2" />
+        </div>
+        
+        <!-- Instagram -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="instagram" value="{{ __('Instagram') }}" />
+            <x-jet-input id="instagram" type="text" placeholder="username" class="mt-1 block w-full" wire:model.defer="state.instagram" />
+            <x-jet-input-error for="instagram" class="mt-2" />
+        </div>
+
+        <!-- Facebook -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="facebook" value="{{ __('Facebook') }}" />
+            <x-jet-input id="facebook" type="text" placeholder="username" class="mt-1 block w-full" wire:model.defer="state.facebook" />
+            <x-jet-input-error for="facebook" class="mt-2" />
+        </div>
+
+
     </x-slot>
 
     <x-slot name="actions">

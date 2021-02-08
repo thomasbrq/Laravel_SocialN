@@ -13,8 +13,27 @@
     margin: 0 15px;
 }
 
-.form-logout a{
-    color: black;
+.dropdown-item button {
+    background-color: transparent;
+    border: none;
+}
+
+.form-logout button {
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.form-logout button {
+    background-color: transparent;
+}
+
+.form-logout button:hover {
+    background-color: transparent;
+}
+
+.myprofile {
+    text-align: center;
 }
 
 @media screen and (max-width: 991px) {
