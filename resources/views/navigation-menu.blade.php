@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('post.index') }}" :active="request()->routeIs('post.index')">
                         Home
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('profile.index', auth()->user()->name) }}" >
+                        My profile
+                    </x-jet-nav-link>
                 </div>
             </div>
 

@@ -34,7 +34,7 @@
                 <p>{{ $post->description }}</p>
             </div>
             <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
-            @<span>{{ $author[$post->author-1]['name'] }}</span>
+            <a href="/user/profile/{{ $author[$post->author-1]['name'] }}">@<span>{{ $author[$post->author-1]['name'] }}</span></a>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
 
             @if (auth()->user() && auth()->user()->id == $post->author)
@@ -105,7 +105,7 @@
                 <div class="one-comment">
                     <p>{{ $comment->message }}</p>
                     <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $comment_author[$comment->author-1]['profile_photo_url'] }}" alt="" />
-                    @<span>{{ $comment_author[$comment->author-1]['name'] }}</span>
+                    <a href="/user/profile/{{ $comment_author[$comment->author-1]['name'] }}">@<span>{{ $comment_author[$comment->author-1]['name'] }}</span></a>
                     <span class="time-ago-comment">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
                     @if (auth()->user() && auth()->user()->id == $comment->author)
                     <form action="{{ route('comment.destroy', $comment->id) }}">
