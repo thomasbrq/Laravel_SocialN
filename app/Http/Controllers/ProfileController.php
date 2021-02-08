@@ -17,7 +17,7 @@ class ProfileController extends Controller
     public function index($name)
     {
         $user = User::where('name', $name)->first();
-        $userLastMsg = Post::where('author', $user->id)->orderBy('created_at', 'DESC')->get();        
+        $userLastMsg = Post::where('author', $user->id)->orderBy('created_at', 'DESC')->limit(6)->get();
         return view('profile-user.profile', compact('user', 'userLastMsg'));
     }
 
