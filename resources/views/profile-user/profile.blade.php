@@ -97,6 +97,5 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary">Back</button>
     </div>
 @endsection
