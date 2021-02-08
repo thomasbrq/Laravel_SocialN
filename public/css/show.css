@@ -171,6 +171,14 @@ hr {
     margin: 15px 0;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
 @media screen and (max-width: 500px) {
     .message {
         width: 100%;
