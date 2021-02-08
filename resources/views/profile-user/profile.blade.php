@@ -91,42 +91,11 @@
                   @foreach ($userLastMsg as $message)
                     <div class="row">
                       <div class="col-sm-9 text-secondary">
-                          {{ $message->title }}
+                         <a href="/{{ $message->slug }}/{{ $message->id }}">{{ $message->title }}</a>
                       </div>
                     </div>
                     <hr>
                   @endforeach
-
-                  {{-- <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div> --}}
-
                 </div>
               </div>
             </div>
