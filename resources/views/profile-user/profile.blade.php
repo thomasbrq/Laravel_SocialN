@@ -87,19 +87,17 @@
             </div>
               <div class="card mb-3">
                 <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam
+
+                  @foreach ($userLastMsg as $message)
+                    <div class="row">
+                      <div class="col-sm-9 text-secondary">
+                          {{ $message->title }}
+                      </div>
                     </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9 text-secondary">
-                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
+                    <hr>
+                  @endforeach
+
+                  {{-- <div class="row">
                     <div class="col-sm-9 text-secondary">
                         Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
                     </div>
@@ -122,6 +120,13 @@
                         Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
                     </div>
                   </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-9 text-secondary">
+                        Quasi non autem neque quas officiis. Occaecati sint et sit iste quos nihil ipsam.
+                    </div>
+                  </div> --}}
+
                 </div>
               </div>
             </div>

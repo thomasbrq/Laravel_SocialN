@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -15,7 +17,8 @@ class ProfileController extends Controller
     public function index($name)
     {
         $user = User::where('name', $name)->first();
-        return view('profile-user.profile', compact('user'));
+        $userLastMsg = Post::where('author', $user->id)->orderBy('created_at', 'DESC')->get();        
+        return view('profile-user.profile', compact('user', 'userLastMsg'));
     }
 
     /**
