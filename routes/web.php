@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 
@@ -39,4 +40,4 @@ Route::get('/comment/{id}/delete', [CommentsController::class, 'destroy'])->name
 
 // Test routes profile
 
-Route::view('/profile', 'profile-user.profile');
+Route::get('/user/profile/{name}', [ProfileController::class, 'index'])->name('profile.index');
