@@ -35,7 +35,7 @@
             </div>
             @if (!empty($post->picture_name))
                 <div class="image-post">
-                    <img src="{{ url('/images/'.$post->picture_name) }}">
+                    <img src="{{ url('storage/uploads/'.$post->picture_name) }}">
                 </div>
             @endif
             <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />

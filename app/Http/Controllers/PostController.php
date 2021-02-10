@@ -10,7 +10,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Exists;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -48,15 +50,18 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'author' => 'required',
             'description' => 'required|max:500',
-            'picture' => 'mimes:jpg,jpeg,png,gif',
+            'picture' => 'image|mimes:jpg,jpeg,png,gif',
         ]);
 
         if($request->picture != NULL)
         {
-            $imageName = time().'.'.$request->picture->extension();  
-            $request->picture->move(public_path('images'), $imageName);
+            $img = $request->file('picture');
+            $encodeImage = Image::make($img)->encode('jpg', 1);
+            $encodeImage = $encodeImage->fit(200);
+            $filename = $img->hashName();
+            Storage::disk('public')->put('uploads/'.$filename, $encodeImage->__toString());
         } else {
-            $imageName = NULL;
+            $filename = NULL;
         }
    
         $slugex = Str::slug($request->title, '-');
@@ -67,7 +72,7 @@ class PostController extends Controller
             'description' => $request->description,
             'author' => $request->author,
             'created_at' => Carbon::now(),
-            'picture_name' => $imageName,
+            'picture_name' => $filename,
         ]); 
 
         $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();

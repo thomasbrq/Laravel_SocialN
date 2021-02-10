@@ -52,7 +52,7 @@
                         </div>
                         @if (!empty($post->picture_name))
                             <div class="image-post">
-                                <img src="{{ url('/images/'.$post->picture_name) }}">
+                                <img src="{{ url('storage/uploads/'.$post->picture_name) }}">
                             </div>
                         @endif
                         <div class="comment-post">
