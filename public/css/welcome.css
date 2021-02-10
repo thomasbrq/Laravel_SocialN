@@ -89,7 +89,12 @@
     vertical-align: sub;
 }
 
-@media screen and (max-width: 500px) {
+.image-post img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 991px) {
     .create-post {
         width: 100%;
     }

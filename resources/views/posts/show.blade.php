@@ -33,6 +33,11 @@
                 <h3>{{ $post->title }}</h3>
                 <p>{{ $post->description }}</p>
             </div>
+            @if (!empty($post->picture_name))
+                <div class="image-post">
+                    <img src="{{ url('storage/uploads/'.$post->picture_name) }}">
+                </div>
+            @endif
             <img class="user-photo h-8 w-8 rounded-full object-cover" src="{{ $author[$post->author-1]['profile_photo_url'] }}" alt="" />
             <a href="/user/profile/{{ $author[$post->author-1]['name'] }}">@<span>{{ $author[$post->author-1]['name'] }}</span></a>
             <span class="time-ago">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>

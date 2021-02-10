@@ -19,6 +19,7 @@ class CreatePostTable extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->foreignId('author')->references('id')->on('users');
+            $table->text('picture_name')->nullable();
             $table->timestamps();
         });
     }

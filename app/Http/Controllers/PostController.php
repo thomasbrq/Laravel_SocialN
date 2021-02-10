@@ -10,7 +10,10 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Exists;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostController extends Controller
 {
@@ -48,7 +51,20 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'author' => 'required',
             'description' => 'required|max:500',
+            'picture' => 'image|mimes:jpg,jpeg,png,gif',
         ]);
+
+        // Compress and upload image
+        if($request->picture != NULL)
+        {
+            $img = $request->file('picture');
+            $encodeImage = Image::make($img)->widen(650)->encode('jpg', 70); // Resize and compress
+            $filename = $img->hashName();
+            Storage::disk('public')->put('uploads/'.$filename, $encodeImage->__toString()); // Upload in public/storage/uploads
+        } else {
+            $filename = NULL;
+        }
+        // End Compress and upload image
 
         $slugex = Str::slug($request->title, '-');
 
@@ -58,6 +74,7 @@ class PostController extends Controller
             'description' => $request->description,
             'author' => $request->author,
             'created_at' => Carbon::now(),
+            'picture_name' => $filename,
         ]); 
 
         $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();
@@ -138,7 +155,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post, $slug, $id)
     {
-        DB::table('post')->where('id', $id)->where('slug', $slug)->delete();
+        $table = DB::table('post')->where('id', $id)->where('slug', $slug);
+        $image = $table->first()->picture_name;
+        $path_image = public_path('storage\uploads/'.$image);
+
+        if(file_exists($path_image))
+        {
+            File::delete($path_image);
+        }
+
+        $table->delete();
         return redirect('/')->with('message', 'Post successfully deleted!');
     }
+
 }

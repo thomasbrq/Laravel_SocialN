@@ -179,7 +179,12 @@ a:hover {
     color: black;
 }
 
-@media screen and (max-width: 500px) {
+.image-post img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 991px) {
     .message {
         width: 100%;
     }
