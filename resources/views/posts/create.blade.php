@@ -24,7 +24,7 @@
                     <a class="nav-link" id="pills-picture-tab" data-bs-toggle="pill" href="#pills-picture" role="tab" aria-controls="pills-picture" aria-selected="false">Picture</a>
                   </li>
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="pills-website-tab" data-bs-toggle="pill" href="#pills-website" role="tab" aria-controls="pills-website" aria-selected="false">Website link</a>
+                  <a class="nav-link" id="pills-website-tab" data-bs-toggle="pill" href="#pills-website" role="tab" aria-controls="pills-website" aria-selected="false">Website URL</a>
                 </li>
               </ul>
               <div class="tab-content" id="pills-tabContent">
@@ -50,7 +50,8 @@
                     <input type="file" name="picture" id="picture">
                 </div>
                 <div class="tab-pane fade" id="pills-website" role="tabpanel" aria-labelledby="pills-website-tab">
-                    
+                    <label for="link">URL</label>
+                    <input type="url" name="link" id="link">
                 </div>
               </div>
 
