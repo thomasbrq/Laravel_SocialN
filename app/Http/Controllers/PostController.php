@@ -75,6 +75,7 @@ class PostController extends Controller
             'author' => $request->author,
             'created_at' => Carbon::now(),
             'picture_name' => $filename,
+            'website_url' => $request->website_url,
         ]); 
 
         $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();

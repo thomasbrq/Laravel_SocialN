@@ -31,6 +31,9 @@
         <div class="message">
             <div class="t-de">
                 <h3>{{ $post->title }}</h3>
+                @if (!empty($post->website_url))
+                    <a href="{{ $post->website_url }}">{{ $post->website_url }}</a>
+                @endif
                 <p>{{ $post->description }}</p>
             </div>
             @if (!empty($post->picture_name))

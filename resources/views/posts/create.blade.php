@@ -51,7 +51,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-website" role="tabpanel" aria-labelledby="pills-website-tab">
                     <label for="link">URL</label>
-                    <input type="url" name="link" id="link">
+                    <input type="url" name="website_url" id="website_url">
                 </div>
               </div>
 
