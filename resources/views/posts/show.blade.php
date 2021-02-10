@@ -32,7 +32,26 @@
             <div class="t-de">
                 <h3>{{ $post->title }}</h3>
                 @if (!empty($post->website_url))
-                    <a href="{{ $post->website_url }}">{{ $post->website_url }}</a>
+                    @php
+                        // Shorten URL
+                        $regex = '(http://www.|https://www.|http://|https://)';
+                        $url = $post->website_url;
+                        $length = strlen($url);
+
+                        if($length > 30)
+                        {
+                            $url = preg_replace($regex, '', $url);
+                            $pos = strpos($url, '/')+1;
+                            $url = str_split($url);
+                            $url = array_reverse($url);
+                            $url = array_splice($url, -($pos+10));
+                            $url = array_reverse($url);
+                            $url = implode($url);
+                            $url = $url.'...';
+                        }
+                        
+                    @endphp
+                    <a href="{{ $post->website_url }}" target="_blank">{{ $url }}</a>
                 @endif
                 <p>{{ $post->description }}</p>
             </div>
