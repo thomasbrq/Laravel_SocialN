@@ -58,7 +58,7 @@ class PostController extends Controller
         if($request->picture != NULL)
         {
             $img = $request->file('picture');
-            $encodeImage = Image::make($img)->widen(650)->encode('jpg', 0); // Resize and compress
+            $encodeImage = Image::make($img)->widen(650)->encode('jpg', 70); // Resize and compress
             $filename = $img->hashName();
             Storage::disk('public')->put('uploads/'.$filename, $encodeImage->__toString()); // Upload in public/storage/uploads
         } else {
