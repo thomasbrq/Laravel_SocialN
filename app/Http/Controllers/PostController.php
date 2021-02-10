@@ -48,8 +48,17 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'author' => 'required',
             'description' => 'required|max:500',
+            'picture' => 'mimes:jpg,jpeg,png,gif',
         ]);
 
+        if($request->picture != NULL)
+        {
+            $imageName = time().'.'.$request->picture->extension();  
+            $request->picture->move(public_path('images'), $imageName);
+        } else {
+            $imageName = NULL;
+        }
+   
         $slugex = Str::slug($request->title, '-');
 
         DB::table('post')->insert([
@@ -58,6 +67,7 @@ class PostController extends Controller
             'description' => $request->description,
             'author' => $request->author,
             'created_at' => Carbon::now(),
+            'picture_name' => $imageName,
         ]); 
 
         $idd = DB::table('post')->select('id')->orderBy('id', 'desc')->get()->first();
@@ -141,4 +151,5 @@ class PostController extends Controller
         DB::table('post')->where('id', $id)->where('slug', $slug)->delete();
         return redirect('/')->with('message', 'Post successfully deleted!');
     }
+
 }

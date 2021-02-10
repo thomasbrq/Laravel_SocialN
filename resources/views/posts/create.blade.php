@@ -14,7 +14,7 @@
 <div id="container">
     <h1>Create post</h1>
     <div class="message">
-        <form action="{{ route('post.store') }}" method="POST">
+        <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="author" id="author" value="{{ auth()->user()->id }}" class="hider">
             <label for="title">Title</label>
@@ -25,9 +25,11 @@
                 </div>
             </div>
 
+            <input type="file" name="picture" id="picture">
+
             <label for="description">Description</label>
             <textarea name="description" id="description" cols="30" rows="10" maxlength="500"></textarea>
-
+            
             <div class="loading-bar">
                 <div class="ldBarDescription" data-value="0" id="ldBarDescription" data-max='500' data-preset="circle" style="width: 25px;height: 25px">
                 </div>
