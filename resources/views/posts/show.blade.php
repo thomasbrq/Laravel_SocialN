@@ -1,3 +1,7 @@
+<?php
+use App\Http\Controllers\Controller;
+?>
+
 @extends('layouts.navbar')
 
 @section('title', 'Post')
@@ -32,25 +36,8 @@
             <div class="t-de">
                 <h3>{{ $post->title }}</h3>
                 @if (!empty($post->website_url))
-                    @php
-                        // Shorten URL
-                        $regex = '(http://www.|https://www.|http://|https://)';
-                        $url = $post->website_url;
-                        $length = strlen($url);
-                        if($length > 30)
-                        {
-                            $url = preg_replace($regex, '', $url);
-                            $pos = strpos($url, '/')+1;
-                            $url = str_split($url);
-                            $url = array_reverse($url);
-                            $url = array_splice($url, -($pos+10));
-                            $url = array_reverse($url);
-                            $url = implode($url);
-                            $url = $url.'...';
-                        }
-                    @endphp
                     <div class="links-website">
-                        <a href="{{ $post->website_url }}" target="_blank">{{ $url }}<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
+                        <a href="{{ $post->website_url }}" target="_blank">{{ Controller::shortenLink(($post->id)-1) }}<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>
                     </div>
                 @endif
                 <p>{{ $post->description }}</p>
