@@ -184,6 +184,12 @@ a:hover {
     margin-bottom: 20px;
 }
 
+.links-website svg {
+    width: 18px;
+    margin-top: -3px;
+    margin-left: 3px;
+}
+
 @media screen and (max-width: 991px) {
     .message {
         width: 100%;

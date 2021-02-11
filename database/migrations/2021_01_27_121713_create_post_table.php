@@ -20,6 +20,7 @@ class CreatePostTable extends Migration
             $table->longText('description');
             $table->foreignId('author')->references('id')->on('users');
             $table->text('picture_name')->nullable();
+            $table->text('website_url')->nullable();
             $table->timestamps();
         });
     }
