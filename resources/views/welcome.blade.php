@@ -33,7 +33,7 @@
             <input type="submit" value="Please log in to create a post" class="create-post" />
         </form>
     @endguest
-    
+
     @auth
         <form action="/create" method="get" class="container-create-post">
             <input type="submit" value="Create post" class="create-post" />
@@ -70,7 +70,7 @@
     <script>
         $('.scrolling-pagination').infiniteScroll({
             // options
-            path: '.next-page',
+            path: 'a[rel="next"]',
             append: '#container',
             history: false,
             scrollThreshold: 50,

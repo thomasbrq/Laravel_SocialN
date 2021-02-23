@@ -94,6 +94,10 @@
     margin-bottom: 20px;
 }
 
+nav[role=navigation] {
+    display: none;
+}
+
 @media screen and (max-width: 991px) {
     .create-post {
         width: 100%;
